@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600&family=Pacifico&display=swap');
+
+h1 {
+    font-family: 'Pacifico', cursive; 
+    text-align: center;
+    margin-top: 
+
+}
+
+h2 {
+    font-family: 'Nunito', sans-serif;
+}
+
+.body {
+    width: 100%;
+}
+
+.homePageFlex {
+   display: flex;
+   justify-content: space-around;
+   margin-top: 100px;
+  
+
+}
+
+.taskListDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-style: solid;
+    padding: 15px;
+    height: max-content;
+    
+}
+
+.taskBoardDiv{
+    border-style: solid;
+    width: 50%;
+    height:400px;
+    padding: 15px;
+    
+}
+
+.taskBoardContainer {
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: space-around;
+}
+
+.taskNote {
+    background-color: greenyellow;
+    width: 70px;
+    height: 70px;
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+   
+}
+
+.taskBoardHeader {
+    text-align: center;
+}
+
+.taskListContainer {
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    justify-content: center;
+    width: 100%;
+    height: max-content;
+    
+}
+
+.inputTaskListForm {
+    display: flex;
+    flex-direction: column;
+    width:100%;
+}
+
+.taskOwner {
+    text-align: right;
+    border: none;
+    height: 70px;
+    max-width: 200px;
+    min-width: 50px;
+
+}
+
+.currentTask {
+    display:flex;
+    flex-direction: column;
+    border-style: solid;
+    justify-content: center;
+    width: 100%;
+    height:max-content;
+}
+
+.currentTaskClass {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
