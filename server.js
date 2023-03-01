@@ -18,33 +18,7 @@ const sequelizeConnection = new Sequelize('postgres://postgres:RositaAcres6214!@
     }
 })
 
-const currentTask = sequelizeConnection.define('currenttasks', {
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: false
-    },
-    currentTaskId: {
-        type: DataTypes.INTEGER,
-        field: 'currenttask_id',
-    },
-    currentTaskName: {
-        type: DataTypes.STRING,
-        field: 'task_name'
-    },
-    currentTaskDescription: {
-        type: DataTypes.STRING,
-        field: 'task_description'
-    },
-    currentTaskDueDate: {
-        type: DataTypes.DATE,
-        field: 'task_duedate'
-    },
-    currentTaskBoardId: {
-        type: DataTypes.INTEGER,
-        field: 'taskboard_id'
-    }
-})
+
 
 const taskBoard = sequelizeConnection.define('taskboards', {
     taskBoardId: {
@@ -109,9 +83,7 @@ app.get('/taskmanagerhome', (req, res) => {
 //GET request for taskmanager with current taskboard divs/notes form tasks table
 app.get('/taskboardhome', (req, res) => {
     taskTable.findAll().then((taskNote) => {
-        if (taskNote.taskName != null) {
-
-        }
+        console.log(taskNote)
         res.send(taskNote)
     })
 }
@@ -123,7 +95,8 @@ app.get('/taskmanager/:currenttask', (req, res) => {
     const currentData = req.body;
     taskTable.findByPk(updateCurrentId).then((currentTask) => {
         if (updateCurrentId) {
-            res.send(currentTask)
+            res.json(currentTask)
+            console.log(currentTask)
         } else {
             res.status(404).send('task not found')
         }
@@ -147,8 +120,10 @@ app.post('/taskboardhome', (req, res) => {
     })
         .catch((err) => {
             console.error('error creating task:', err)
-        }).then(
-            res.send('table added successfully')
+        }).then((result)=>{
+            console.dir(result)
+            res.json(result)
+        }
         )
 })
 
@@ -203,11 +178,8 @@ app.put('/taskmanager/:currenttask', (req, res) => {
 
 //DELETE request that will delete the current task from the UI, the task table, and the taskboard
 app.delete('/taskmanager/:currenttask', (req, res) => {
-    const updateCurrentId = req.params['currenttask'];
-    currentTask.destroy({
-        where: { id: updateCurrentId }
-    })
-    taskTable.destroy({
+     const updateCurrentId = req.params['currenttask'];
+     taskTable.destroy({
         where: { taskId: updateCurrentId }
     })
     res.status(200).send('Book deleted successfully')
